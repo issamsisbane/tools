@@ -1,0 +1,25 @@
+#!/bin/bash
+
+generate_password() {
+  local DEFAULT_LENGTH=16
+  local LENGTH=${1:-$DEFAULT_LENGTH}
+  local MAX_SPECIALS=4 
+
+  if [[ ! "$LENGTH" =~ ^[0-9]+$ ]] || [[ "$LENGTH" -lt 10 ]]; then
+    echo "Error: LENGTH must be at least 10." >&2
+    return 1
+  fi
+
+  local NUM_SPECIALS=$((RANDOM % MAX_SPECIALS + 1))
+  local ALPHA_NUM="a-zA-Z0-9"
+  local SPECIAL_CHARS="!@#$%&*-_=+?-"
+
+  local BASE_PASSWORD=$(LC_ALL=C tr -dc "$ALPHA_NUM" < /dev/urandom | head -c $((LENGTH - NUM_SPECIALS)))
+  local SPECIAL_PART=$(LC_ALL=C tr -dc "$SPECIAL_CHARS" < /dev/urandom | head -c $NUM_SPECIALS)
+
+  local PASSWORD=$(echo "$BASE_PASSWORD$SPECIAL_PART" | fold -w1 | shuf | tr -d '\n')
+
+  echo "$PASSWORD"
+}
+
+generate_password "$@"
