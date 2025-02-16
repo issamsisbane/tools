@@ -43,7 +43,7 @@ We need to source the file in our `.bashrc` or `.zshrc`.
 I use a loop to load everything in the folder : 
 
 ``` bash
-for script in "$HOME/HELPERS/tools/*.sh"; do
+for script in "$HOME/HELPERS/tools/bash/func/"*.sh; do
     [ -f "$script" ] && source "$script"
 done
 ```
