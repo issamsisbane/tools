@@ -1,6 +1,7 @@
 # Tools
-A set of tools I have write to help me in my day to day job.
+
+A set of tools I have written to help me in my day-to-day job.
 
 ## BASH
 
-In the folder `bash` there are the list of useful script I use inside my WSL.
+In the folder `bash`, There is the list of useful scripts I use inside my WSL.
