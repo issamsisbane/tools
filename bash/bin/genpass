@@ -6,7 +6,7 @@ generate_password() {
   local MAX_SPECIALS=4 
 
   if [[ ! "$LENGTH" =~ ^[0-9]+$ ]] || [[ "$LENGTH" -lt 10 ]]; then
-    echo "Error: LENGTH must be at least 10." >&2
+    echo "LENGTH must be at least 10." >&2
     return 1
   fi
 

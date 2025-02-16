@@ -1,0 +1,36 @@
+#!/bin/bash
+
+change_kube_context() {
+    KUBECONFIG_DIR="$HOME/.kube/configs"
+
+    if [ ! -d "$KUBECONFIG_DIR" ]; then
+        echo "The folder $KUBECONFIG_DIR doesn't exist."
+        exit 1
+    fi
+
+    echo "Configs :"
+    CONFIG_FILES=("$KUBECONFIG_DIR"/*)
+
+    if [ ${#CONFIG_FILES[@]} -eq 0 ]; then
+        echo "No file found in $KUBECONFIG_DIR."
+        exit 1
+    fi
+
+    for i in "${!CONFIG_FILES[@]}"; do
+        echo "[$i] $(basename "${CONFIG_FILES[$i]}")"
+    done
+
+    read -r SELECTION
+
+    if ! [[ "$SELECTION" =~ ^[0-9]+$ ]] || [ "$SELECTION" -ge "${#CONFIG_FILES[@]}" ]; then
+        echo "Not a valid selection."
+        exit 1
+    fi
+
+    export KUBECONFIG="${CONFIG_FILES[$SELECTION]}"
+    echo "Kube config changed to: $KUBECONFIG"
+
+    kubectl config get-contexts
+}
+
+change_kube_context

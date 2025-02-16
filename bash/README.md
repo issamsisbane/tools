@@ -21,6 +21,8 @@ export PATH="$HOME/HELPERS/tools/bash/bin:$PATH"
 
 #### Password Generation
 
+`genpass` for generation password
+
 Generate a secure password of the provided lenght.
 
 We call it with :
@@ -32,6 +34,21 @@ genpass [size-of-password]
 - size must be > 9
 - it will use a combination of small-case letters, upper-case letters, numbers, and special characters. 
 - defautl size is 16
+
+#### Switch Kube Context
+
+`kc` for kube change
+
+Change the kubernetes context.
+
+We call it with :
+
+```
+kc
+```
+
+- The kubernetes config files muste be in `$HOME/.kube/configs`
+
 
 ## FUNC
 
@@ -55,7 +72,9 @@ We call the function by using the function name.
 
 #### Load Environment
 
-Load all envrionment variables in a file.
+`load_env.sh`
+
+Load all envrionment variables in a file. 
 It's usefull to load a lot of variables switching project for example.
 
 We call it with : 

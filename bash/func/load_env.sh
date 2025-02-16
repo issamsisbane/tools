@@ -2,7 +2,7 @@
 
 load() {
     if [ -z "$1" ]; then
-        echo "Veuillez fournir un nom de fichier en paramètre."
+        echo "Provide a file name in parameters."
         echo "Usage: $0 <nom>"
         return 1
     fi
